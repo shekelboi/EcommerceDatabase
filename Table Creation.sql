@@ -28,6 +28,8 @@ create table product (
     name varchar(100) not null,
     description varchar(5000) not null,
     image_id varchar(36),
+    price numeric(20, 4) not null,
+    stock int not null,
     subcategory_id int not null,
     foreign key (subcategory_id) references subcategory (id)
 );

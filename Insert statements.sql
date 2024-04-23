@@ -3,16 +3,16 @@ insert into subcategory (category_id, name)
 select category.id, $1 from category
 where category.name = $2;
 
-prepare add_product (varchar, varchar, varchar, varchar) as
-insert into product (name, description, image_id, subcategory_id)
-select $1, $2, $3, subcategory.id from subcategory
-where subcategory.name = $4;
+prepare add_product (varchar, varchar, varchar, decimal(20, 4), int, varchar) as
+insert into product (name, description, image_id, price, stock, subcategory_id)
+select $1, $2, $3, $4, $5, subcategory.id from subcategory
+where subcategory.name = $6;
 
 insert into category (name) values ('Entertainment');
 insert into category (name) values ('Electronics');
 
 execute add_subcategory ('Phone', 'Electronics');
-execute add_product ('Xiaomi Redmi Note 8 Pro', 'Wifi: Yes<br>5G: No', 'some unique image id', 'Phone');
+execute add_product ('Xiaomi Redmi Note 8 Pro', 'Wifi: Yes<br>5G: No', 'some unique image id', 21.50, 500, 'Phone');
 
 insert into address (type, country, state, town, zip, address_line_1)
 values ('home', 'USA', 'Alabama', 'Tuscaloosa', '35405', '901 Foxrun Ave');
