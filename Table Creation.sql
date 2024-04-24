@@ -1,6 +1,6 @@
 drop table if exists status_update;
-drop table if exists purchase_and_product;
-drop table if exists purchase;
+drop table if exists sale_and_product;
+drop table if exists sale;
 drop table if exists customer_and_address;
 drop table if exists customer;
 drop table if exists address;
@@ -65,7 +65,7 @@ create table customer_and_address (
     foreign key (address_id) references address (id)
 );
 
-create table purchase (
+create table sale (
     id int generated always as identity primary key,
     ordered_at timestamp without time zone not null,
     shipping_status varchar(30) default 'Not sent' not null,
@@ -76,19 +76,19 @@ create table purchase (
     foreign key (address_id) references address (id)
 );
 
-create table purchase_and_product (
+create table sale_and_product (
     id int generated always as identity primary key,
-    purchase_id int not null,
+    sale_id int not null,
     product_id int not null,
     amount int not null,
     price_per_piece decimal(20, 4) not null,
-    foreign key (purchase_id) references purchase (id),
+    foreign key (sale_id) references sale (id),
     foreign key (product_id) references product (id)
 );
 
 create table status_update (
     id int generated always as identity primary key,
-    purchase_id int not null,
+    sale_id int not null,
     status_change varchar(500) not null,
-    foreign key (purchase_id) references purchase (id)
+    foreign key (sale_id) references sale (id)
 );

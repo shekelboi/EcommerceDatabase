@@ -22,13 +22,13 @@ values ('Joe', 'Biden', 'joebiden@president.com', '555-1942', 1, 'squirrel', '50
 
 insert into customer_and_address (customer_id, address_id) values (1, 1);
 
-insert into purchase (ordered_at, customer_id, address_id)
+insert into sale (ordered_at, customer_id, address_id)
 values ('2004-10-19 10:23:54', 1, 1);
 
-insert into purchase_and_product (purchase_id, product_id, amount, price_per_piece)
+insert into sale_and_product (sale_id, product_id, amount, price_per_piece)
 values (1, 1, 10, 20.49);
 
-insert into status_update (purchase_id, status_change)
+insert into status_update (sale_id, status_change)
 values
     (1, 'Paid!'),
     (1, 'Shipped!'),
