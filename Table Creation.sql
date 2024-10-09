@@ -49,11 +49,11 @@ create table customer (
     id int generated always as identity primary key,
     first_name varchar(50) not null,
     last_name varchar(50) not null,
-    email varchar(320) not null,
+    email varchar(320) unique not null,
     telephone varchar(320) not null,
-    default_address_id int unique not null,
-    salt varchar(64) unique not null,
-    password_hash varchar(64) not null,
+    default_address_id int, -- Could be null, maybe it has to be changed to not null later and maybe even unique
+    salt bytea not null,
+    password_hash bytea not null,
     foreign key (default_address_id) references address (id)
 );
 
