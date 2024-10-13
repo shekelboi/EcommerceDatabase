@@ -1,3 +1,42 @@
+-- Random base32 generator
+create or replace function generate_base_32()
+returns text as $$
+declare
+    v_result text;
+begin
+    select string_agg(substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ234567', ceil(random() * 32)::integer, 1), '') into v_result
+    from generate_series(1, 10);
+    return v_result;
+end $$ language plpgsql;
+
+
+-- Name to slug generator
+create or replace function name_to_slug(
+    p_name text
+)
+returns text as $$
+declare
+    v_result text;
+begin
+    select regexp_replace(p_name, '([^a-zA-Z0-9])', '-', 'g') into v_result;
+    return v_result;
+end $$ language plpgsql;
+
+-- Name to shortened generator
+create or replace function shortened_slug(
+    p_name text
+)
+returns text as $$
+declare
+    v_array text[];
+    v_short_slug text;
+begin
+    v_short_slug := array_to_string((select (select string_to_array(name_to_slug(p_name), '-'))[:5]), '-');
+    return v_short_slug;
+end $$ language plpgsql;
+
+
+
 prepare add_subcategory (varchar, varchar) as
 insert into subcategory (category_id, name)
 select category.id, $1 from category
@@ -44,8 +83,8 @@ create or replace function create_customer(
     last_name text,
     email text,
     telephone text,
-    default_address_id int,
-    password text
+    password text,
+    default_address_id int default null
 )
 returns void as $$
 declare
@@ -64,7 +103,7 @@ begin
     raise info 'Record created for % %', first_name, last_name;
 end $$ language plpgsql;
 
-select create_customer('Chana', 'Dal', 'chanadal@india.gov', '+912189819221', 1, 'Example_pa$$123');
+select create_customer('Chana', 'Dal', 'chanadal@india.gov', '+912189819221', 'Example_pa$$123', 1);
 
 create or replace function check_password(
     p_email text,
