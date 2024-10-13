@@ -1,0 +1,4 @@
+\c
+drop database ecommerce;
+create database ecommerce;
+\c ecommerce
