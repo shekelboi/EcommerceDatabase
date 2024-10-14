@@ -1,4 +1,4 @@
 \c postgres
-drop database ecommerce;
+drop database if exists ecommerce;
 create database ecommerce;
 \c ecommerce
