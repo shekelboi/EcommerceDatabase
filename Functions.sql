@@ -1,3 +1,6 @@
+-- Deallocate all prepared statements
+deallocate all;
+
 -- Random base32 generator
 create or replace function generate_base_32()
 returns text as $$

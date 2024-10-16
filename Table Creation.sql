@@ -7,8 +7,6 @@ drop table if exists address;
 drop table if exists product;
 drop table if exists subcategory;
 drop table if exists category;
--- Deallocate all prepared statements
-deallocate all;
 
 create table category (
     id bigint generated always as identity primary key,

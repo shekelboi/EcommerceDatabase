@@ -14,6 +14,12 @@ The `Documentation` folder contains an image of the ER diagram of the DB schema 
 
 SQL scripts in order of execution.
 
+### User Creation.sql
+
+> Make sure that JDBC is not connected to the database during this process (the Spring Boot application should not be running).
+
+If the `shopadmin` user and the `ecommerce` database has not been created it can be created using the `User and DB Creation.sql`.
+
 ### Table Creation.sql
 
 The script that creates the tables and the sequences (used for automatic ID generation) of the database.
@@ -27,12 +33,6 @@ Useful custom functions (base32 generator, salt generator/password hasher and pa
 Generated data, insert statements to fill up the database.
 
 ## Additional Scripts
-
-### User Creation.sql
-
-> It is crucial for this step to ensure that the database exists and the admin is connected to the database.
-
-If the `shopadmin` user has not been crated it can be created using the `User Creation.sql`, which will have access to the ecommerce database.
 
 ### recreate-db.psql
 
