@@ -2,13 +2,13 @@
 deallocate all;
 
 -- Random base32 generator
-create or replace function generate_base_32()
+create or replace function generate_base_32(p_length int default 10)
 returns text as $$
 declare
     v_result text;
 begin
     select string_agg(substr('ABCDEFGHIJKLMNOPQRSTUVWXYZ234567', ceil(random() * 32)::integer, 1), '') into v_result
-    from generate_series(1, 10);
+    from generate_series(1, p_length);
     return v_result;
 end $$ language plpgsql;
 
