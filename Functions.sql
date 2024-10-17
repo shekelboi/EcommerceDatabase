@@ -12,6 +12,24 @@ begin
     return v_result;
 end $$ language plpgsql;
 
+-- Generate base32 ID until it's confirmed to be unique
+create or replace function generate_unique_base_32(p_table_name text, p_field_name text, p_length int default 10)
+returns text as $$
+declare
+    v_unique_id text;
+begin
+    raise info 'Attempting to find unique id:';
+    while true loop
+        v_unique_id := generate_base_32(p_length);
+        raise info 'id: %', v_unique_id;
+        perform p.name from product p where p.public_id = '';
+        if not found then
+            exit;
+        end if;
+    end loop;
+    raise info 'unique id found: %', v_unique_id;
+    return v_unique_id;
+end $$ language plpgsql;
 
 -- Name to slug generator
 create or replace function name_to_slug(
