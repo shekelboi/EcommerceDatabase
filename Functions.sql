@@ -1,3 +1,6 @@
+-- Drop pgcrypto extension
+drop extension if exists pgcrypto;
+
 -- Deallocate all prepared statements
 deallocate all;
 
@@ -17,13 +20,15 @@ create or replace function generate_unique_base_32(p_table_name text, p_field_na
 returns text as $$
 declare
     v_unique_id text;
+    v_query_result text;
 begin
     raise info 'Attempting to find unique id:';
     while true loop
         v_unique_id := generate_base_32(p_length);
         raise info 'id: %', v_unique_id;
-        perform p.name from product p where p.public_id = '';
-        if not found then
+        execute format('select 1 from %I where %I = %L', p_table_name, p_field_name, v_unique_id)
+        into v_query_result;
+        if v_query_result is null then
             exit;
         end if;
     end loop;
