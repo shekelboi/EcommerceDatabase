@@ -5,7 +5,7 @@ drop extension if exists pgcrypto;
 deallocate all;
 
 -- Random base32 generator
-create or replace function generate_base_32(p_length int default 10)
+create or replace function generate_base_32(p_length int)
 returns text as $$
 declare
     v_result text;
@@ -16,7 +16,7 @@ begin
 end $$ language plpgsql;
 
 -- Generate base32 ID until it's confirmed to be unique
-create or replace function generate_unique_base_32(p_table_name text, p_field_name text, p_length int default 10)
+create or replace function generate_unique_base_32(p_table_name text, p_field_name text, p_length int default 12)
 returns text as $$
 declare
     v_unique_id text;

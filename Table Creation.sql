@@ -23,7 +23,7 @@ create table subcategory (
 
 create table product (
     id bigint generated always as identity primary key,
-    public_id varchar(10) unique,
+    public_id varchar(12) unique,
     name varchar(100) not null,
     description varchar(5000) not null,
     slug varchar(100) not null,
