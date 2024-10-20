@@ -14,7 +14,6 @@ end$$;
 -- Create user, assume its role and create the ecommerce database
 create user shopadmin with password 'yourpass';
 alter role shopadmin with login createdb;
-grant create on schema public to shopadmin;
 set role shopadmin;
 create database ecommerce;
 \c ecommerce
