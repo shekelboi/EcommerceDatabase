@@ -82,7 +82,7 @@ create or replace function create_customer(
     email text,
     telephone text,
     password text,
-    default_address_id int default null
+    default_address_id bigint default null
 )
 returns boolean as $$
 declare
