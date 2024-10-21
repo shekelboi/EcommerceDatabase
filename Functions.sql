@@ -84,7 +84,7 @@ create or replace function create_customer(
     password text,
     default_address_id int default null
 )
-returns void as $$
+returns boolean as $$
 declare
     computed_hash bytea;
     salt bytea;
@@ -99,6 +99,9 @@ begin
     insert into customer (first_name, last_name, email, telephone, default_address_id, salt, password_hash)
     values (first_name, last_name, email, telephone, default_address_id, salt, computed_hash);
     raise info 'Record created for % %', first_name, last_name;
+    return true;
+exception when others then
+    return false;
 end $$ language plpgsql;
 
 create or replace function check_password(
