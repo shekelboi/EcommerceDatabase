@@ -7,6 +7,7 @@ drop table if exists address;
 drop table if exists product;
 drop table if exists subcategory;
 drop table if exists category;
+drop table if exists image;
 
 create table category (
     id bigint generated always as identity primary key,
@@ -32,6 +33,13 @@ create table product (
     stock int not null,
     subcategory_id bigint not null,
     foreign key (subcategory_id) references subcategory (id)
+);
+
+create table image (
+    id bigint generated always as identity primary key,
+    product_id bigint,
+    public_id varchar(20) unique,
+    foreign key (product_id) references product (id)
 );
 
 create table address (
