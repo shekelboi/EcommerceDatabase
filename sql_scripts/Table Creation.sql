@@ -28,7 +28,6 @@ create table product (
     name varchar(100) not null,
     description varchar(5000) not null,
     slug varchar(100) not null,
-    image_id varchar(36),
     price numeric(20, 4) not null,
     stock int not null,
     subcategory_id bigint not null,
@@ -59,7 +58,7 @@ create table customer (
     last_name varchar(50) not null,
     email varchar(320) unique not null,
     telephone varchar(320) not null,
-    default_address_id bigint, -- Could be null, maybe it has to be changed to not null later and maybe even unique
+    default_address_id bigint,
     salt bytea not null,
     password_hash bytea not null,
     foreign key (default_address_id) references address (id)

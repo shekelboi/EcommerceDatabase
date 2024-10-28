@@ -2,39 +2,39 @@
 
 -- Categories
 insert into category (name, logo) values
-('electronics', 'electronics_logo.png'),
-('clothing', 'clothing_logo.png'),
-('home & kitchen', 'home_kitchen_logo.png'),
-('books', 'books_logo.png'),
-('toys', 'toys_logo.png');
+('Electronics', 'electronics_logo.png'),
+('Clothing', 'clothing_logo.png'),
+('Home & Kitchen', 'home_kitchen_logo.png'),
+('Books', 'books_logo.png'),
+('Toys', 'toys_logo.png');
 
 -- Subcategories
 insert into subcategory (category_id, name) values
-(1, 'mobile phones'),
-(1, 'laptops'),
-(2, 'men''s clothing'),
-(2, 'women''s clothing'),
-(3, 'kitchen appliances'),
-(3, 'furniture'),
-(4, 'fiction'),
-(4, 'non-fiction'),
-(5, 'action figures'),
-(5, 'board games');
+(1, 'Mobile Phones'),
+(1, 'Laptops'),
+(2, 'Men''s Clothing'),
+(2, 'Women''s Clothing'),
+(3, 'Kitchen Appliances'),
+(3, 'Furniture'),
+(4, 'Fiction'),
+(4, 'Non-Fiction'),
+(5, 'Action Figures'),
+(5, 'Board Games');
 
 -- Products
-insert into product (public_id, name, description, slug, image_id, price, stock, subcategory_id) values
-(generate_unique_base_32('product', 'public_id'), 'Smartphone XYZ', 'Latest model smartphone with amazing features.', shortened_slug('Smartphone XYZ'), 'img1.png', 699.99, 50, 1),
-(generate_unique_base_32('product', 'public_id'), 'Laptop ABC', 'High-performance laptop for gaming and work.', shortened_slug('Laptop ABC'), 'img2.png', 1299.99, 30, 2),
-(generate_unique_base_32('product', 'public_id'), 'Men''s T-Shirt', 'Comfortable cotton t-shirt.', shortened_slug('Men''s T-Shirt'), 'img3.png', 19.99, 100, 3),
-(generate_unique_base_32('product', 'public_id'), 'Women''s Dress', 'Elegant dress for special occasions.', shortened_slug('Women''s Dress'), 'img4.png', 49.99, 75, 4),
-(generate_unique_base_32('product', 'public_id'), 'Blender', 'High-speed blender for smoothies.', shortened_slug('Blender'), 'img5.png', 89.99, 20, 5),
-(generate_unique_base_32('product', 'public_id'), 'Dining Table', 'Beautiful wooden dining table.', shortened_slug('Dining Table'), 'img6.png', 399.99, 15, 6),
-(generate_unique_base_32('product', 'public_id'), 'Best-Selling Novel', 'A gripping fiction novel that you won''t put down.', shortened_slug('Best-Selling Novel'), 'img7.png', 14.99, 200, 7),
-(generate_unique_base_32('product', 'public_id'), 'Science Book', 'An insightful exploration of the universe.', shortened_slug('Science Book'), 'img8.png', 24.99, 150, 8),
-(generate_unique_base_32('product', 'public_id'), 'Action Figure', 'Collectible action figure from popular series.', shortened_slug('Action Figure'), 'img9.png', 29.99, 100, 9),
-(generate_unique_base_32('product', 'public_id'), 'Board Game', 'Fun board game for family nights.', shortened_slug('Board Game'), 'img10.png', 39.99, 60, 10),
-(generate_unique_base_32('product', 'public_id'), 'Incredible All-in-One Kitchen Appliance for All Your Cooking Needs', 'This kitchen appliance combines a blender, a steamer, and a pressure cooker into one convenient device.', shortened_slug('Incredible All-in-One Kitchen Appliance for All Your Cooking Needs'), 'img11.png', 199.99, 25, 5),
-(generate_unique_base_32('product', 'public_id'), 'Ultimate Travel Backpack with Multiple Compartments for Easy Organization and Comfort', 'A versatile backpack designed for travelers, featuring various compartments and ergonomic support.', shortened_slug('Ultimate Travel Backpack with Multiple Compartments for Easy Organization and Comfort'), 'img12.png', 89.99, 40, 1);
+insert into product (public_id, name, description, slug, price, stock, subcategory_id) values
+(generate_unique_base_32('product', 'public_id'), 'Smartphone XYZ', 'Latest model smartphone with amazing features.', shortened_slug('Smartphone XYZ'), 699.99, 50, 1),
+(generate_unique_base_32('product', 'public_id'), 'Laptop ABC', 'High-performance laptop for gaming and work.', shortened_slug('Laptop ABC'), 1299.99, 30, 2),
+(generate_unique_base_32('product', 'public_id'), 'Men''s T-Shirt', 'Comfortable cotton t-shirt.', shortened_slug('Men''s T-Shirt'), 19.99, 100, 3),
+(generate_unique_base_32('product', 'public_id'), 'Women''s Dress', 'Elegant dress for special occasions.', shortened_slug('Women''s Dress'), 49.99, 75, 4),
+(generate_unique_base_32('product', 'public_id'), 'Blender', 'High-speed blender for smoothies.', shortened_slug('Blender'), 89.99, 20, 5),
+(generate_unique_base_32('product', 'public_id'), 'Dining Table', 'Beautiful wooden dining table.', shortened_slug('Dining Table'), 399.99, 15, 6),
+(generate_unique_base_32('product', 'public_id'), 'Best-Selling Novel', 'A gripping fiction novel that you won''t put down.', shortened_slug('Best-Selling Novel'), 14.99, 200, 7),
+(generate_unique_base_32('product', 'public_id'), 'Science Book', 'An insightful exploration of the universe.', shortened_slug('Science Book'), 24.99, 150, 8),
+(generate_unique_base_32('product', 'public_id'), 'Action Figure', 'Collectible action figure from popular series.', shortened_slug('Action Figure'), 29.99, 100, 9),
+(generate_unique_base_32('product', 'public_id'), 'Board Game', 'Fun board game for family nights.', shortened_slug('Board Game'), 39.99, 60, 10),
+(generate_unique_base_32('product', 'public_id'), 'Incredible All-in-One Kitchen Appliance for All Your Cooking Needs', 'This kitchen appliance combines a blender, a steamer, and a pressure cooker into one convenient device.', shortened_slug('Incredible All-in-One Kitchen Appliance for All Your Cooking Needs'), 199.99, 25, 5),
+(generate_unique_base_32('product', 'public_id'), 'Ultimate Travel Backpack with Multiple Compartments for Easy Organization and Comfort', 'A versatile backpack designed for travelers, featuring various compartments and ergonomic support.', shortened_slug('Ultimate Travel Backpack with Multiple Compartments for Easy Organization and Comfort'), 89.99, 40, 1);
 
 -- Addresses
 insert into address (type, country, state, town, zip, address_line_1, address_line_2) values
