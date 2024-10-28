@@ -1,5 +1,4 @@
 -- Drop database as admin (must be logged in as admin)
-set role postgres;
 drop database ecommerce;
 
 -- Revoke all privileges and drop user if exists
@@ -16,6 +15,3 @@ create user shopadmin with password 'yourpass';
 alter role shopadmin with login createdb;
 set role shopadmin;
 create database ecommerce;
-\c ecommerce
--- After connecting the role has to be set again
-set role shopadmin;

@@ -10,6 +10,12 @@ The root directory contains the SQL scripts to create the tables, the functions 
 
 The `Documentation` folder contains an image of the ER diagram of the DB schema and an editable `.drawio` file, which can be updated on [draw.io](https://app.diagrams.net/), in case the schema changes.
 
+## How To Recreate The Database
+
+Run the `provisioner.cmd` file. You will need to enter the password for the `postgres` user then the `shopadmin` user (this can be adjusted in the `User Creation.sql` script).
+
+The user, the database and the entities are created.
+
 ## Scripts
 
 SQL scripts in order of execution.
