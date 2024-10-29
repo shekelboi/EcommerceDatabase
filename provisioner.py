@@ -13,6 +13,9 @@ s3 = boto3.resource('s3')
 bucket = s3.Bucket('ecommerce420')
 bucket.objects.all().delete()
 
+# Upload blank image
+bucket.upload_file('product_images/special/blank.jpg', 'blank.jpg')
+
 connection = psycopg2.connect(dbname='ecommerce', user='shopadmin', password=password)
 connection.set_session(autocommit=True)
 
@@ -22,9 +25,12 @@ with connection.cursor() as cursor:
     cursor.execute("delete from image;")
 
 for img in images:
-    product_id, image_order = img.split('_')
+    if img == 'special':
+        continue
+    product_id = img.split('_')[0]
     with connection.cursor() as cursor:
         cursor.execute("select generate_unique_base_32('image', 'public_id', 20);")
         public_id = cursor.fetchone()[0]
         bucket.upload_file(f'product_images/{img}', f'{public_id}.jpg')
+        print(f'Uploading image ({public_id}) for product with id: {product_id}')
         cursor.execute(f"insert into image(product_id, public_id) values({product_id}, '{public_id}');")
