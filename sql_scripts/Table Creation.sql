@@ -36,8 +36,8 @@ create table product (
 
 create table image (
     id bigint generated always as identity primary key,
-    product_id bigint,
     public_id varchar(20) unique,
+    product_id bigint,
     foreign key (product_id) references product (id)
 );
 
